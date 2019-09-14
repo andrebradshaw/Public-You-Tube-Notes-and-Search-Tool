@@ -69,8 +69,8 @@ function dragElement() {
 function convertTime2Secs(str) {
   var timehours = /^\d+:\d+:\d+$/.exec(str);
   var timemins = /^\d+:\d+$/.exec(str);
-  var hour = timehours ? parseInt(/^\d+(?=:)/.exec(timehours[0])[0]) : 0;
-  var mins = timemins ? parseInt(/^\d+(?=:)/.exec(timemins[0])[0]) : 0;
+  var hour = timehours ? parseInt(/^(\d+):/.exec(timehours[0])[1]) : 0;
+  var mins = timemins ? parseInt(/^(\d+):/.exec(timemins[0])[1]) : 0;
   var secs = timemins ? parseInt(/\d+$/.exec(timemins[0])[0]) : 0;
   return ((hour * (60 * 60)) + (mins * 60) + (secs));
 }
@@ -183,7 +183,7 @@ async function getTimestamp() {
 
 async function createNotesHTML() {
   var timestamp = await getTimestamp();
-  var videoId = reg(/(?<=youtube\.com\/watch\?v=|youtu\.be\/).+?(?=\?|$)/.exec(window.location.href), 0);
+  var videoId = reg(/youtube\.com\/watch\?v=|youtu\.be\/(.+?)(\?|$)/.exec(window.location.href), 1);
   var linkOutput = encodeURIComponent(`https://youtu.be/${videoId}?t=${timestamp}`);
   var notes = gi(document, 'save_note_val').value.trim();
   var send_to_sheets = `${appsScriptWebAppLink}?link=${linkOutput}&notes=${notes}`;
