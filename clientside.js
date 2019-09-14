@@ -183,7 +183,7 @@ async function getTimestamp() {
 
 async function createNotesHTML() {
   var timestamp = await getTimestamp();
-  var videoId = reg(/youtube\.com\/watch\?v=|youtu\.be\/(.+?)(\?|$)/.exec(window.location.href), 1);
+  var videoId = reg(/youtube\.com\/watch\?v=(.+?)(\?|$)/.exec(window.location.href), 1) ? reg(/youtube\.com\/watch\?v=(.+?)(\?|$)/.exec(window.location.href), 1) : reg(/youtu\.be\/(.+?)(\?|$)/.exec(window.location.href), 1);
   var linkOutput = encodeURIComponent(`https://youtu.be/${videoId}?t=${timestamp}`);
   var notes = gi(document, 'save_note_val').value.trim();
   var send_to_sheets = `${appsScriptWebAppLink}?link=${linkOutput}&notes=${notes}`;
