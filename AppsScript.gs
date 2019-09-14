@@ -75,12 +75,12 @@ function doGet(e) {
     var row_placement = [[link,notes]];
     var lr = s1.getLastRow(); 
     s1.getRange((lr+1), 1, 1, row_placement[0].length).setValues(row_placement); 
-    return HtmlService.createHtmlOutput('<div>'+link+' was sent to your spreadsheet with the following notes <br>'+notes+'</div>');
+    return HtmlService.createHtmlOutput('<div style="background: #1c1c1c; color: #ffffff;  height: 800px; width: 100%; padding: 20px;">'+link+' was sent to your spreadsheet with the following notes <br>'+notes+'</div>');
   }
   if(e.parameter.search){
     var searchBool = decodeURIComponent(e.parameter.search);
     var matches = loopSearch(searchBool);
-    var htmlout = matches.length > 0 ? matches.map(function(itm){return '<div><a href="'+itm[0]+'">'+itm[1]+'</a></div>';}) : 'nothing found';
-    return HtmlService.createHtmlOutput('<div>'+htmlout+'</div>');
+    var htmlout = matches.length > 0 ? matches.map(function(itm){return '<div>+ <a style="color: #abcbff;" href="'+itm[0]+'">'+itm[1]+'</a></div>';}).reduce(function(a,b){return a+b}) : 'nothing found';
+    return HtmlService.createHtmlOutput('<div style="background: #1c1c1c; color: #ffffff; height: 800px; width: 100%; padding: 20px;">'+htmlout+'</div>');
   }
 }
