@@ -8,7 +8,7 @@ var delay = (ms) => new Promise(res => setTimeout(res, ms));
 var ele = (t) => document.createElement(t);
 var attr = (o, k, v) => o.setAttribute(k, v);
 
-var appsScriptWebAppLink = 'https://script.google.com/a/quickli.io/macros/s/AKfycbxgiF8ByK6w3wNx5P2qhsuT10uj-3STChITHjs9xGUE/dev';
+var appsScriptWebAppLink = 'https://script.google.com/________';
 
 function aninCloseBtn() {
   var l1 = tn(this, 'path')[0];
