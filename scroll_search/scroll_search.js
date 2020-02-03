@@ -10,7 +10,8 @@ var attr = (o, k, v) => o.setAttribute(k, v);
 
 
 function scroller() {
-  window.scrollTo(0,cn(document,'style-scope ytd-page-manager')[2].scrollHeight);
+  var windo = cn(document,'style-scope ytd-page-manager')[2] ? cn(document,'style-scope ytd-page-manager')[2] : gi(document,'contents');
+  window.scrollTo(0,windo.scrollHeight);
 }
 
 function deleteElementsBySearchParams() {
@@ -23,3 +24,11 @@ var regXall = (x,s) => x.map(el=> el.test(s));
 
 regXall(parseSearch('27 dollars'),'asfasfasf 27 dollars asfgasgasg')
 //style-scope ytd-item-section-renderer
+
+async function looper(){
+  for(var i=0; i<100; i++){
+    scroller();
+    await delay(rando(555)+533)
+  }
+}
+looper()
