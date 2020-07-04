@@ -123,7 +123,7 @@ function createDebateNotesHTML(){
   var rect = document.body.getBoundingClientRect();
 
   var cont = ele('div');
-  a(cont,[['id',id],['style', `padding: 0; position: fixed; top: ${rect.top+5}px; left: ${rect.left+5}px; z-index: ${new Date().getTime()}; width: ${rect.width*0.8}px; border: 1px solid #004471; border-radius: 0.4em; background: rgba(5, 37, 51, 0.6);`]]);
+  a(cont,[['id',id],['style', `padding: 0; position: fixed; top: ${rect.top+200}px; left: ${rect.left+5}px; z-index: ${new Date().getTime()}; width: ${rect.width*0.8}px; border: 1px solid #004471; border-radius: 0.4em; background: rgba(5, 37, 51, 0.6);`]]);
   document.body.appendChild(cont);
 
   var head = ele('div');
@@ -148,7 +148,8 @@ function createDebateNotesHTML(){
   a(cbod,[['style',`background: #0a1114; display: grid; grid-template-rows: auto; grid-gap: 6px; padding: 2px; max-height: ${(screen.availHeight*0.75)}px; overflow-y: auto;`]]);
   cont.appendChild(cbod);
 
-  
+  createDebatePanelHTML(cbod);
+
 } //createDebateNotesHTML()
 
 
@@ -156,16 +157,25 @@ function createDebatePanelHTML(ref){
   var rect = ref.getBoundingClientRect();
 
   var cont = ele('div');
-  a(cont,[['style',`display: grid; grid-template-columns: minmax(30px, ${rect.width*2}px) minmax(${rect.width - 26}px, ${(rect.width*8)-4}px); grid-gap: 4px;`]]);
+  a(cont,[['style',`display: grid; grid-template-columns: minmax(80px, ${rect.width*3}px) minmax(${rect.width - 88}px, ${(rect.width*7)-4}px); grid-gap: 4px;`]]);
   ref.appendChild(cont);
 
+  var left_options = ['Add Topic','Add Person'];
   var left = ele('div');
   a(left,[['id', 'left_panel_cont'],['style',`display: grid; grid-template-rows: auto; grid-gap: 4px; max-height: ${document.body.getBoundingClientRect() * 0.7}px; overflow-y: auto;`]]);
   cont.appendChild(left);
+  left_options.forEach(r=> {
+    var opt = ele('div');
+    a(opt,[['style',`background: #004471; color: #f1f1f1; border-radius: 0.4em; text-align: center; padding: 4px;`]]);
+    left.appendChild(opt);
+    opt.innerText = r;
+  });
 
   var right = ele('div');
-  a(right,[['id', 'right_panel_cont'],['style',`display: grid; grid-template-rows: auto; grid-gap: 4px; max-height: ${document.body.getBoundingClientRect() * 0.7}px; overflow-y: auto;`]]);
+  a(right,[['id', 'right_panel_cont'],['style',`display: grid; grid-template-rows: auto; grid-gap: 4px; max-height: ${document.body.getBoundingClientRect() * 0.7}px; overflow-y: auto; background: #f1f1f1;`]]);
   cont.appendChild(right);
+
+  
 
 }
 
