@@ -45,10 +45,6 @@ test()
 
 
 
-
-
-
-
 var reg = (o, n) => o ? o[n] : '';
 var cn = (o, s) => o ? o.getElementsByClassName(s) : null;
 var tn = (o, s) => o ? o.getElementsByTagName(s) : null;
@@ -149,10 +145,28 @@ function createDebateNotesHTML(){
   cls.onclick = () => cont.outerHTML = '';
 
   var cbod = ele('div');
-  a(cbod,[['id','audio_file_manager_view_cbod'],['style',`background: #0a1114; display: grid; grid-template-rows: auto; grid-gap: 6px; padding: 2px; max-height: ${(screen.availHeight*0.75)}px; overflow-y: auto;`]]);
+  a(cbod,[['style',`background: #0a1114; display: grid; grid-template-rows: auto; grid-gap: 6px; padding: 2px; max-height: ${(screen.availHeight*0.75)}px; overflow-y: auto;`]]);
   cont.appendChild(cbod);
 
   
+} //createDebateNotesHTML()
+
+
+function createDebatePanelHTML(ref){
+  var rect = ref.getBoundingClientRect();
+
+  var cont = ele('div');
+  a(cont,[['style',`display: grid; grid-template-columns: minmax(30px, ${rect.width*2}px) minmax(${rect.width - 26}px, ${(rect.width*8)-4}px); grid-gap: 4px;`]]);
+  ref.appendChild(cont);
+
+  var left = ele('div');
+  a(left,[['id', 'left_panel_cont'],['style',`display: grid; grid-template-rows: auto; grid-gap: 4px; max-height: ${document.body.getBoundingClientRect() * 0.7}px; overflow-y: auto;`]]);
+  cont.appendChild(left);
+
+  var right = ele('div');
+  a(right,[['id', 'right_panel_cont'],['style',`display: grid; grid-template-rows: auto; grid-gap: 4px; max-height: ${document.body.getBoundingClientRect() * 0.7}px; overflow-y: auto;`]]);
+  cont.appendChild(right);
+
 }
 
 createDebateNotesHTML()
